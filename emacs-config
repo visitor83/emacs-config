@@ -1,0 +1,94 @@
+(setq user-full-name "Wang Fei")
+(setq user-mail-address "wang.fei@advantech.com.cn")
+
+(set-default-font "-adobe-courier-medium-r-normal--14-140-75-75-m-90-iso10646-1")
+(setq auto-fill-mode 1)
+(show-paren-mode t)
+
+(setq default-major-mode 'text-mode)
+
+(setq x-select-enable-clipboard t)
+
+;;(load "displn-mode-settings")
+;; Display column number
+(setq column-number-mode t)
+
+;; Disable menu bar
+(menu-bar-mode -1)
+
+;;-----------------------------------------------------------------------
+(defconst my-emacs-lisps-path (concat "~/.emacs.d/my-lisps/"))
+
+;;(load "auctex.el" nil t t)
+
+(defun now ()
+  "Insert string for the current time formatted like '2:34 PM'."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%D %-I:%M %p")))
+
+(defun today ()
+  "Insert string for today's date nicely formatted in American style,
+e.g. Sunday, September 17, 2000."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%a %b %e %Y")))
+
+    
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+(setq tab-stop-list nil)
+
+(global-set-key [f4] 'goto-line)
+(global-set-key [f8] 'ispell)
+(global-set-key [C-f10] 'compile)
+(global-set-key [f2] 'previous-error)
+(global-set-key [f3] 'next-error)
+
+(setq tags-file-name "~/TAGS")
+(setq default-fill-column 60)
+(setq enable-recursive-minibuffers t)
+(setq frame-title-format "emacs@%b")
+
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "/root/.emacs.d/ac-dict")
+(ac-config-default)
+
+(load-file "~/.emacs.d/my-lisps/auto-complete+.el")
+;;---------------------------------------------------------
+;;  color-theme
+(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
+(require 'color-theme)
+(color-theme-initialize)
+;;(color-theme-fei)
+
+(add-to-list 'load-path "~/.emacs.d/my-lisps")
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+(require 'linum+)
+(global-hl-line-mode 0)
+(global-font-lock-mode t)
+(global-linum-mode t)
+
+;;----------------------------------------------------------
+;;  clang
+(require 'auto-complete-clang)
+(setq ac-clang-auto-save t)
+(setq ac-auto-start t)
+(setq ac-quick-help-delay 0.5)
+
+;;----------------------------------------------------------
+;;  doxymacs
+;;(require 'doxymacs)
+
+;;----------------------------------------------------------
+;;  octave
+(define-key global-map "\C-c1" 'run-octave)
+(autoload 'octave-mode "octave-mod" nil t)
+          (setq auto-mode-alist
+                (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+
+
+
+
